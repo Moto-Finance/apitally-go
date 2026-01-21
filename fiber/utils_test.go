@@ -3,7 +3,7 @@ package apitally
 import (
 	"testing"
 
-	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v3"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -11,7 +11,7 @@ func TestUtils(t *testing.T) {
 	t.Run("GetRoutes", func(t *testing.T) {
 		app := fiber.New()
 
-		app.Get("/hello", func(c *fiber.Ctx) error {
+		app.Get("/hello", func(c fiber.Ctx) error {
 			return c.JSON(fiber.Map{
 				"message": "Hello, World!",
 			})

@@ -12,7 +12,7 @@ import (
 	"github.com/apitally/apitally-go/common"
 	"github.com/apitally/apitally-go/internal"
 	"github.com/go-playground/validator/v10"
-	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v3"
 )
 
 // Middleware returns the Apitally middleware for Fiber.
@@ -33,20 +33,20 @@ func Middleware(app *fiber.App, config *Config) fiber.Handler {
 		})
 	}
 
-	return func(c *fiber.Ctx) error {
+	return func(c fiber.Ctx) error {
 		if !client.IsEnabled() {
 			return c.Next()
 		}
 
 		// Start span collection
-		spanHandle := client.SpanCollector.StartSpan(c.UserContext())
+		spanHandle := client.SpanCollector.StartSpan(c.Context())
 		traceID := spanHandle.TraceID()
 
 		// Start log capture
 		logHandle := client.LogCollector.StartCapture(spanHandle.Context())
 
 		// Inject context into request
-		c.SetUserContext(logHandle.Context())
+		c.SetContext(logHandle.Context())
 
 		// Determine request size
 		requestSize := common.ParseContentLength(c.Get("Content-Length"))
@@ -69,9 +69,9 @@ func Middleware(app *fiber.App, config *Config) fiber.Handler {
 
 		defer func() {
 			duration := time.Since(start)
-			statusCode := int(c.Response().StatusCode())
-			method := string(c.Route().Method)
-			path := string(c.Route().Path)
+			path := c.Route().Path
+			method := c.Route().Method
+			statusCode := c.Response().StatusCode()
 
 			// End span collection and get spans
 			spanHandle.SetName(fmt.Sprintf("%s %s", method, path))
@@ -197,7 +197,7 @@ func Middleware(app *fiber.App, config *Config) fiber.Handler {
 // Alias for backwards compatibility
 var ApitallyMiddleware = Middleware
 
-func CaptureValidationError(c *fiber.Ctx, err error) {
+func CaptureValidationError(c fiber.Ctx, err error) {
 	if err == nil {
 		return
 	}
@@ -208,10 +208,10 @@ func CaptureValidationError(c *fiber.Ctx, err error) {
 	}
 }
 
-func SetConsumerIdentifier(c *fiber.Ctx, consumerIdentifier string) {
+func SetConsumerIdentifier(c fiber.Ctx, consumerIdentifier string) {
 	c.Locals("ApitallyConsumer", consumerIdentifier)
 }
 
-func SetConsumer(c *fiber.Ctx, consumer common.Consumer) {
+func SetConsumer(c fiber.Ctx, consumer common.Consumer) {
 	c.Locals("ApitallyConsumer", consumer)
 }

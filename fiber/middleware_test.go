@@ -11,8 +11,8 @@ import (
 
 	"github.com/apitally/apitally-go/internal"
 	"github.com/go-playground/validator/v10"
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v3/middleware/recover"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/otel"
 )
@@ -32,24 +32,24 @@ func setupTestApp(requestLoggingEnabled bool) *fiber.App {
 	app.Use(recover.New())
 	app.Use(Middleware(app, config))
 
-	app.Get("/hello", func(c *fiber.Ctx) error {
+	app.Get("/hello", func(c fiber.Ctx) error {
 		SetConsumerIdentifier(c, "tester")
 		return c.JSON(fiber.Map{"message": "Hello, World!"})
 	})
 
-	app.Post("/hello", func(c *fiber.Ctx) error {
+	app.Post("/hello", func(c fiber.Ctx) error {
 		SetConsumer(c, Consumer{
 			Identifier: "tester",
 			Name:       "Tester",
 			Group:      "Test Group",
 		})
 
-		slog.InfoContext(c.UserContext(), "Processing hello request")
+		slog.InfoContext(c.Context(), "Processing hello request")
 
 		var req struct {
 			Name string `json:"name" validate:"required,min=3"`
 		}
-		if err := c.BodyParser(&req); err != nil {
+		if err := c.Bind().Body(&req); err != nil {
 			return c.Status(http.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
 		}
 		validate := validator.New()
@@ -58,14 +58,14 @@ func setupTestApp(requestLoggingEnabled bool) *fiber.App {
 			return c.Status(http.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
 		}
 
-		_, span := otel.Tracer("test").Start(c.UserContext(), "child-span")
+		_, span := otel.Tracer("test").Start(c.Context(), "child-span")
 		time.Sleep(100 * time.Millisecond)
 		span.End()
 
 		return c.JSON(fiber.Map{"message": "Hello, " + req.Name + "!"})
 	})
 
-	app.Get("/error", func(c *fiber.Ctx) error {
+	app.Get("/error", func(c fiber.Ctx) error {
 		panic("test panic")
 	})
 
@@ -224,7 +224,7 @@ func TestMiddleware(t *testing.T) {
 		respHeaders := helloLogItem.Response.Headers
 		assert.Len(t, respHeaders, 1)
 		assert.Equal(t, "Content-Type", respHeaders[0][0])
-		assert.Equal(t, "application/json", respHeaders[0][1])
+		assert.Equal(t, "application/json; charset=utf-8", respHeaders[0][1])
 
 		// Validate spans are logged
 		assert.Len(t, helloLogItem.TraceID, 32)

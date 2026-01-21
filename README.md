@@ -116,7 +116,7 @@ application. For further instructions, see our
 ```go
 import (
     apitally "github.com/apitally/apitally-go/fiber"
-    "github.com/gofiber/fiber/v2"
+    "github.com/gofiber/fiber/v3"
 )
 
 func main() {

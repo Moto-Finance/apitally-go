@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/apitally/apitally-go/common"
-	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v3"
 )
 
 var excludedMethods = []string{"HEAD", "OPTIONS", "CONNECT", "TRACE"}
@@ -42,7 +42,7 @@ func getVersions(appVersion string) map[string]string {
 	return versions
 }
 
-func getFullURL(c *fiber.Ctx) string {
+func getFullURL(c fiber.Ctx) string {
 	scheme := "http"
 	if c.Protocol() == "https" {
 		scheme = "https"
@@ -54,7 +54,8 @@ func transformHeaders(header map[string][]string) [][2]string {
 	headers := make([][2]string, 0)
 	for k, values := range header {
 		for _, v := range values {
-			headers = append(headers, [2]string{k, v})
+			// Clone strings to avoid fasthttp buffer reuse issues
+			headers = append(headers, [2]string{strings.Clone(k), strings.Clone(v)})
 		}
 	}
 	return headers
