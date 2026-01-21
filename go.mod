@@ -1,4 +1,4 @@
-module github.com/apitally/apitally-go
+module github.com/moto-finance/apitally-go
 
 go 1.25.0
 
