@@ -1,7 +1,7 @@
 package apitally
 
 import (
-	"github.com/apitally/apitally-go/common"
+	"github.com/moto-finance/apitally-go/common"
 )
 
 type Consumer = common.Consumer

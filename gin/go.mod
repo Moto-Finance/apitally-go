@@ -1,11 +1,11 @@
-module github.com/apitally/apitally-go/gin
+module github.com/moto-finance/apitally-go/gin
 
-go 1.21
+go 1.25.0
 
 require (
-	github.com/apitally/apitally-go v0.0.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-playground/validator/v10 v10.14.0
+	github.com/moto-finance/apitally-go v0.0.0
 	github.com/stretchr/testify v1.11.1
 )
 
@@ -46,12 +46,12 @@ require (
 	go.opentelemetry.io/otel/sdk v1.28.0 // indirect
 	go.opentelemetry.io/otel/trace v1.28.0 // indirect
 	golang.org/x/arch v0.3.0 // indirect
-	golang.org/x/crypto v0.9.0 // indirect
-	golang.org/x/net v0.10.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
-	golang.org/x/text v0.9.0 // indirect
+	golang.org/x/crypto v0.44.0 // indirect
+	golang.org/x/net v0.47.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/text v0.31.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/apitally/apitally-go => ../
+replace github.com/moto-finance/apitally-go => ../

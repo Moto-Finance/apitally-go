@@ -4,7 +4,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/apitally/apitally-go/common"
+	"github.com/moto-finance/apitally-go/common"
 )
 
 func validateConsumer(consumer *common.Consumer) bool {

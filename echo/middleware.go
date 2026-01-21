@@ -9,10 +9,10 @@ import (
 	"runtime/debug"
 	"time"
 
-	"github.com/apitally/apitally-go/common"
-	"github.com/apitally/apitally-go/internal"
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
+	"github.com/moto-finance/apitally-go/common"
+	"github.com/moto-finance/apitally-go/internal"
 )
 
 // Middleware returns the Apitally middleware for Echo.

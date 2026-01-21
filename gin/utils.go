@@ -4,8 +4,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/apitally/apitally-go/common"
 	"github.com/gin-gonic/gin"
+	"github.com/moto-finance/apitally-go/common"
 )
 
 func getRoutes(r *gin.Engine) []common.PathInfo {

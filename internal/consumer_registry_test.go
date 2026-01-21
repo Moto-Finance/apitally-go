@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/apitally/apitally-go/common"
+	"github.com/moto-finance/apitally-go/common"
 	"github.com/stretchr/testify/assert"
 )
 

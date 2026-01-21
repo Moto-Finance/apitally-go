@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/apitally/apitally-go/common"
 	"github.com/hashicorp/go-retryablehttp"
+	"github.com/moto-finance/apitally-go/common"
 	"github.com/stretchr/testify/assert"
 )
 

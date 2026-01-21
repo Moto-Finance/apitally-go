@@ -15,7 +15,7 @@
 
 # Apitally SDK for Go
 
-[![Tests](https://github.com/apitally/apitally-go/actions/workflows/tests.yaml/badge.svg?event=push)](https://github.com/apitally/apitally-go/actions)
+[![Tests](https://github.com/moto-finance/apitally-go/actions/workflows/tests.yaml/badge.svg?event=push)](https://github.com/moto-finance/apitally-go/actions)
 [![Codecov](https://codecov.io/gh/apitally/apitally-go/graph/badge.svg?token=KGMvKb59lc)](https://codecov.io/gh/apitally/apitally-go)
 
 This SDK for Apitally currently supports the following Go web frameworks:
@@ -67,7 +67,7 @@ application. For further instructions, see our
 
 ```go
 import (
-    apitally "github.com/apitally/apitally-go/chi"
+    apitally "github.com/moto-finance/apitally-go/chi"
     "github.com/go-chi/chi/v5"
 )
 
@@ -91,7 +91,7 @@ application. For further instructions, see our
 
 ```go
 import (
-    apitally "github.com/apitally/apitally-go/echo"
+    apitally "github.com/moto-finance/apitally-go/echo"
     "github.com/labstack/echo/v4"
 )
 
@@ -115,7 +115,7 @@ application. For further instructions, see our
 
 ```go
 import (
-    apitally "github.com/apitally/apitally-go/fiber"
+    apitally "github.com/moto-finance/apitally-go/fiber"
     "github.com/gofiber/fiber/v3"
 )
 
@@ -139,7 +139,7 @@ For further instructions, see our
 
 ```go
 import (
-    apitally "github.com/apitally/apitally-go/gin"
+    apitally "github.com/moto-finance/apitally-go/gin"
     "github.com/gin-gonic/gin"
 )
 

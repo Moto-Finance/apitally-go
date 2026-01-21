@@ -33,7 +33,7 @@ jobs:
           git add common/version.go
           for mod in */go.mod; do
             dir=$(dirname "$mod")
-            sed -E -i 's|github.com/apitally/apitally-go v0.0.0|github.com/apitally/apitally-go '$VERSION'|' "$mod"
+            sed -E -i 's|github.com/moto-finance/apitally-go v0.0.0|github.com/moto-finance/apitally-go '$VERSION'|' "$mod"
             (cd "$dir" && go mod tidy) || exit 1
             git add "$mod" "$dir/go.sum"
           done

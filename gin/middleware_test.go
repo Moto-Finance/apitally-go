@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/apitally/apitally-go/internal"
 	"github.com/gin-gonic/gin"
+	"github.com/moto-finance/apitally-go/internal"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/otel"
 )

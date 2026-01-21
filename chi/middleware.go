@@ -10,10 +10,10 @@ import (
 	"runtime/debug"
 	"time"
 
-	"github.com/apitally/apitally-go/common"
-	"github.com/apitally/apitally-go/internal"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-playground/validator/v10"
+	"github.com/moto-finance/apitally-go/common"
+	"github.com/moto-finance/apitally-go/internal"
 )
 
 type contextKey string

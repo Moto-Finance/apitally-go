@@ -6,8 +6,8 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/apitally/apitally-go/common"
 	"github.com/gofiber/fiber/v3"
+	"github.com/moto-finance/apitally-go/common"
 )
 
 var excludedMethods = []string{"HEAD", "OPTIONS", "CONNECT", "TRACE"}

@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/apitally/apitally-go/common"
 	"github.com/google/uuid"
+	"github.com/moto-finance/apitally-go/common"
 )
 
 const (

@@ -5,8 +5,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/apitally/apitally-go/common"
 	"github.com/go-chi/chi/v5"
+	"github.com/moto-finance/apitally-go/common"
 )
 
 func getRoutes(r chi.Router) []common.PathInfo {

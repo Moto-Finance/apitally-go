@@ -3,9 +3,9 @@ module github.com/moto-finance/apitally-go/fiber
 go 1.25.0
 
 require (
-	github.com/apitally/apitally-go v0.0.0
 	github.com/go-playground/validator/v10 v10.16.0
 	github.com/gofiber/fiber/v3 v3.0.0-rc.3
+	github.com/moto-finance/apitally-go v0.0.0
 	github.com/stretchr/testify v1.11.1
 	go.opentelemetry.io/otel v1.28.0
 )
@@ -50,4 +50,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/apitally/apitally-go => ../
+replace github.com/moto-finance/apitally-go => ../

@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/apitally/apitally-go/internal"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-playground/validator/v10"
+	"github.com/moto-finance/apitally-go/internal"
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/otel"
 )
