@@ -1,4 +1,4 @@
-module github.com/apitally/apitally-go/fiber
+module github.com/moto-finance/apitally-go/fiber
 
 go 1.25.0
 
